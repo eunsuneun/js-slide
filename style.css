@@ -1,48 +1,42 @@
 @charset 'utf-8';
-button {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
 .wrapper {
   background-color: #f6f6f6;
 }
-.container {
+.slide-wrap {
   overflow: hidden;
   position: relative;
-  width: 960px;
+  max-width: 960px;
+  padding: 80px 0 100px;
   margin: 0 auto;
-  padding: 100px 0 130px;
 }
 
-.slider-container {
+.slide-container {
   position: absolute;
   width: 100%;
-  left: 0;
-  -webkit-transition: left 0.3s ease-in;
   transition: left 0.3s ease-in;
 }
 
 .slide {
+  overflow: hidden;
   position: absolute;
-  width: 100%;
-  padding: 0 10%;
-  box-sizing: border-box;
   top: 50%;
   transform: translateY(-50%);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10%;
   text-align: center;
-  overflow: hidden;
 }
 
 blockquote {
   color: #636363;
+  font-size: 20px;
   font-weight: 300;
   font-style: italic;
-  margin-bottom: 1.5em;
+  margin-bottom: 30px;
 }
 
 cite {
-  font-size: 0.75em;
+  font-size: 16px;
   font-weight: 700;
   font-style: normal;
 }
@@ -50,18 +44,17 @@ cite {
 /* Nav */
 #prev,
 #next {
+  display: inline-block;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateY(-50%);
   z-index: 1;
-  display: inline-block;
-  height: 5em;
+  transform: translateY(-50%);
   width: 5em;
+  height: 5em;
   border-radius: 50%;
-  background-position: center center;
   background-repeat: no-repeat;
-  -webkit-transition: all 0.3s ease-in;
+  background-position: center center;
   transition: all 0.3s ease-in;
 }
 
@@ -71,7 +64,7 @@ cite {
 }
 
 #prev {
-  margin-left: -480px;
+  margin: 0 0 0 -480px;
   background-image: url("arrow-left-out.svg");
 }
 
@@ -80,34 +73,10 @@ cite {
 }
 
 #next {
-  margin-left: 400px;
+  margin: 0 0 0 400px;
   background-image: url("arrow-right-out.svg");
 }
 
 #next:hover {
   background-image: url("arrow-right-over.svg");
-}
-
-/* pager */
-.pager {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 20px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  font-size: 0;
-}
-.pager button {
-  width: 10px;
-  height: 10px;
-  background: #ccc;
-  border-radius: 50%;
-  display: inline-block;
-  text-indent: -9999em;
-  margin: 0 5px;
-}
-.pager button.active {
-  background: #333;
 }

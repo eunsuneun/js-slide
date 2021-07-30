@@ -1,15 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   // 변수 지정
-  var $slideWrap = document.querySelector(".container"),
-    $slideContainer = document.querySelector(".slider-container"),
+  var $slideWrap = document.querySelector(".slide-wrap"),
+    $slideContainer = document.querySelector(".slide-container"),
     $slide = document.querySelectorAll(".slide"),
-    $navPrev = document.getElementById("prev"),
-    $navNext = document.getElementById("next"),
+    $prevBtn = document.getElementById("prev"),
+    $nextBtn = document.getElementById("next"),
     $slideHeight = 0,
     $slideCount = $slide.length,
-    $currentIndex = 0,
-    $pager = document.querySelector(".pager"),
-    $pagerBtn = document.querySelectorAll(".pager span");
+    $currentIndex = 0;
 
   // 슬라이드의 최대 높이를 부모의 높이로 지정하기
   for (var i = 0; i < $slideCount; i++) {
@@ -22,11 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 슬라이드 2개 이상일 때 prev,next 생성하기
   if ($slideCount == 1) {
-    $navNext.classList.add("disabled");
-    $navPrev.classList.add("disabled");
+    $nextBtn.classList.add("disabled");
+    $prevBtn.classList.add("disabled");
   } else {
-    $navNext.classList.remove("disabled");
-    $navPrev.classList.remove("disabled");
+    $nextBtn.classList.remove("disabled");
+    $prevBtn.classList.remove("disabled");
   }
 
   // 슬라이드 가로로 배열하기
@@ -43,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 버튼을 클릭이벤트
   // prev버튼
-  $navPrev.addEventListener("click", function () {
+  $prevBtn.addEventListener("click", function () {
     if ($currentIndex != 0) {
       // 현재 슬라이드가 첫 번째 슬라이드가 아닐 때
       // prev버튼 누르면현재 슬라이드에서 1뺀 슬라이드로
@@ -55,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // next 버튼
-  $navNext.addEventListener("click", function () {
+  $nextBtn.addEventListener("click", function () {
     if ($currentIndex != $slideCount - 1) {
       //현재 슬라이드가 마지막슬라이드가 아닐 때
       goToSlide($currentIndex + 1);
