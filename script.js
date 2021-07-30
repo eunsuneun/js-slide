@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $slideHeight = 0,
     $slideCount = $slide.length,
     $currentIndex = 0,
+    $pagerHTML = "",
+    $pager = document.querySelector(".pager"),
     timer = "";
 
   // 슬라이드의 최대 높이를 부모의 높이로 지정하기
@@ -31,12 +33,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // 슬라이드 가로로 배열하기
   for (var a = 0; a < $slideCount; a++) {
     $slide[a].style.left = a * 100 + "%";
+    $pagerHTML += "<button>" + a + "</button>";
+    $pager.innerHTML = $pagerHTML;
   }
+  var $pagerBtn = document.querySelectorAll(".pager button");
 
   // 슬라이드 이동 함수
   function goToSlide(idx) {
     $slideContainer.style.left = -100 * idx + "%";
     $currentIndex = idx;
+    // 모든 $pagerBtn에서 active 삭제
+    for (var i = 0; i < $pagerBtn.length; i++) {
+      $pagerBtn[i].classList.remove("active");
+    }
+    // target $pagerBtn만 active 추가
+    $pagerBtn[idx].classList.add("active");
   }
   goToSlide(0);
 
@@ -81,4 +92,15 @@ document.addEventListener("DOMContentLoaded", function () {
   $slideWrap.addEventListener("mouseleave", function () {
     startautoSlide();
   });
+
+  // pager
+  for (var p = 0; p < $pagerBtn.length; p++) {
+    $pagerBtn[p].addEventListener("click", function (event) {
+      // 태그 내부 숫자 활용
+      var pagerNum = event.target.innerText;
+      // data-idx 활용
+      // var pagerNum = event.target.getAttribute("data-idx");
+      goToSlide(pagerNum);
+    });
+  }
 });
