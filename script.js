@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     $nextBtn = document.getElementById("next"),
     $slideHeight = 0,
     $slideCount = $slide.length,
-    $currentIndex = 0;
+    $currentIndex = 0,
+    timer = "";
 
   // 슬라이드의 최대 높이를 부모의 높이로 지정하기
   for (var i = 0; i < $slideCount; i++) {
@@ -61,5 +62,23 @@ document.addEventListener("DOMContentLoaded", function () {
       //현재 슬라이드가 마지막 슬라이드 일 때
       goToSlide(0);
     }
+  });
+
+  // 자동 재생
+  function startautoSlide() {
+    timer = setInterval(function () {
+      var nextIdx = ($currentIndex + 1) % $slideCount;
+      goToSlide(nextIdx);
+    }, 4000);
+  }
+  function stopAutoSlide() {
+    clearInterval(timer);
+  }
+  startautoSlide();
+  $slideWrap.addEventListener("mouseenter", function () {
+    stopAutoSlide();
+  });
+  $slideWrap.addEventListener("mouseleave", function () {
+    startautoSlide();
   });
 });
