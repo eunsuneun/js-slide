@@ -7,7 +7,7 @@
 JavaScript, jQuery 기반의 슬라이드 라이브러리를 이용하는 것이 기능면에서는 효율적이겠지만,  
 이것 역시 작고 기초적인 슬라이드를 구현할 때 가볍게 사용하기 좋을 것 같습니다.
 
-결과적으로 JavaScript의 기초를 다지고, 슬라이더의 기초적인 동작 원리를 파악하기에 좋았습니다.
+결과적으로 JavaScript의 기초를 다지고, 슬라이더의 기초적인 동작 원리를 파악하기에 좋았습니다. 😊
 
 <br>
 <br>
@@ -36,20 +36,75 @@ if ($slideCount == 1) {
 
 ### 2. loop
 
-마지막 슬라이드에서 next 버튼 클릭 시 제일 첫 번째 슬라이드로,
+마지막 슬라이드에서 next 버튼 클릭 시 제일 첫 번째 슬라이드로,  
 첫 번째 슬라이드에서 prev 버튼 클릭 시 제일 마지막 슬라이드로 이동합니다.
+
+```javascript
+// prev
+$prevBtn.addEventListener("click", function () {
+  if ($currentIndex != 0) {
+    goToSlide($currentIndex - 1);
+  } else {
+    goToSlide($slideCount - 1);
+  }
+});
+// next
+$nextBtn.addEventListener("click", function () {
+  if ($currentIndex != $slideCount - 1) {
+    goToSlide($currentIndex + 1);
+  } else {
+    goToSlide(0);
+  }
+});
+```
+
 <br>
 
 ### 3. paginations
 
+JavaScript를 이용하여 동적으로 태그를 만들어줍니다.
+
+```javascript
+for (var a = 0; a < $slideCount; a++) {
+  $pagerHTML += "<button>" + a + "</button>";
+  $pager.innerHTML = $pagerHTML;
+}
+var $pagerBtn = document.querySelectorAll(".pager button");
+```
+
 <br>
 
-### 4. Auto Slider
+### 4. Auto Play
+
+5초 단위로 자동 재생됩니다.
+
+```javascript
+// 자동 재생
+function startautoSlide() {
+  timer = setInterval(function () {
+    var nextIdx = ($currentIndex + 1) % $slideCount;
+    goToSlide(nextIdx);
+  }, 5000);
+}
+function stopAutoSlide() {
+  clearInterval(timer);
+}
+```
 
 <br>
 
 ### 5. pause in mouseenter
 
-<br>
+슬라이더에 마우스가 올라가면 자동 재생이 멈추고, 마우스가 사라지면 다시 자동 재생됩니다.
 
-### 7. 자동 높이 설정
+```javascript
+startautoSlide();
+$slideWrap.addEventListener("mouseenter", function () {
+  stopAutoSlide();
+});
+$slideWrap.addEventListener("mouseleave", function () {
+  startautoSlide();
+});
+```
+
+<br>
