@@ -9,6 +9,8 @@ JavaScript, jQuery 기반의 슬라이드 라이브러리를 이용하는 것이
 
 결과적으로 JavaScript의 기초를 다지고, 슬라이더의 기초적인 동작 원리를 파악하기에 좋았습니다. 😊
 
+[완성 페이지](https://eunsuneun.github.io/js-slide)
+
 <br>
 <br>
 <br>
